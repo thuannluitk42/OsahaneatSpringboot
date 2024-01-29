@@ -1,5 +1,6 @@
 package com.thuannluit.osahaneat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "Food")
+@Entity(name = "food")
 public class Food extends BaseEntity{
     @Column(name = "title")
     private String title;

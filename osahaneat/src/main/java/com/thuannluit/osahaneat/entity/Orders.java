@@ -11,12 +11,12 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "Orders")
+@Entity(name = "orders")
 public class Orders extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users user;
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = "res_id")

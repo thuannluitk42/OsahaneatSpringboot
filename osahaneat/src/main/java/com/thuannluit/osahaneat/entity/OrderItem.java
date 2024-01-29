@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity(name = "OrderItem")
+@Entity(name = "order_item")
 public class OrderItem {
 
     @EmbeddedId

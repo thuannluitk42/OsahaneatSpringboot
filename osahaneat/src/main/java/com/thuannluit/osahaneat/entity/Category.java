@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "Category")
+@Entity(name = "category")
 public class Category extends BaseEntity{
     @Column(name = "name_cate")
     private String name_cate;

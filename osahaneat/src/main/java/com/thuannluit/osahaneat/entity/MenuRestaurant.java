@@ -1,5 +1,6 @@
 package com.thuannluit.osahaneat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thuannluit.osahaneat.entity.keys.KeyMenuRestaurant;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity(name = "MenuRestaurant")
+@Entity(name = "menu_restaurant")
 public class MenuRestaurant{
     @EmbeddedId
     KeyMenuRestaurant keys;

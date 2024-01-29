@@ -13,7 +13,7 @@ public class RatingRestaurant {
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users user;
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = "res_id")

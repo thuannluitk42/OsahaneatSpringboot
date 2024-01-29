@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "RatingFood")
+@Entity(name = "rating_food")
 public class RatingFood {
 
     @Id

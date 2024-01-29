@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity(name = "Promo")
+@Entity(name = "promo")
 public class Promo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

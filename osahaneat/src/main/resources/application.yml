@@ -5,10 +5,16 @@ spring:
     password: admin123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-
-
+  servlet:
+    multipart:
+      max-file-size: 10MB
+jwt:
+  privateKey: p+En8YH0zvwKCQZol66grrec2QSBFaCjb44cFUohnMg=
+fileUpload:
+  rootPath: D:\Study\osahaneat_1\uploads

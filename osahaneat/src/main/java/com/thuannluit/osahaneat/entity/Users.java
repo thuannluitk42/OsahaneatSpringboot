@@ -8,11 +8,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "Users")
-public class    Users extends  BaseEntity{
+@Entity(name = "users")
+public class Users extends BaseEntity {
 
     @Column(name = "user_name")
-    private String user_name;
+    private String username;
     @Column(name = "password")
     private String password ;
     @Column(name = "fullname")
@@ -25,10 +25,10 @@ public class    Users extends  BaseEntity{
     @OneToMany(mappedBy = "users")
     private Set<RatingFood> listRatingFood;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private Set<RatingRestaurant> listRatingRestaurant;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "users")
     private Set<Orders> listOrders;
 
 }
