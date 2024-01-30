@@ -97,3 +97,19 @@ alter table OrderItem add constraint fk_orderitem_food_id foreign key(food_id) r
 alter table MenuRestaurant add constraint fk_menurestaurant_cate_id foreign key(cate_id) references Category(id);
 alter table MenuRestaurant add constraint fk_menurestaurant_res_id foreign key(res_id) references Restaurant(id);
 alter table Promo add constraint fk_promo_res_id foreign key(res_id) references Restaurant(id);
+
+
+ALTER TABLE Roles MODIFY COLUMN create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE Users MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE Category MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE OrderItem MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE MenuRestaurant MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+
+
+insert into Roles(role_name) values("ROLE_ADMIN");
+insert into Roles(role_name) values("ROLE_USER");
+
+insert into Users(user_name, password, fullname, role_id) values("abc@gmail.com","123456","abc",1);
+insert into Users(user_name, password, fullname, role_id) values("abcd@gmail.com","123","abc2",2);
+
+select * from Users
