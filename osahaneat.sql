@@ -1,12 +1,12 @@
 create database osahaneat;
 use osahaneat;
-create table Roles (
+create table roles (
 	id int auto_increment,
     role_name varchar(20),
     create_date timestamp,
     primary key(id)
 );
-create table Users (
+create table users (
 	id int auto_increment,
     user_name varchar(100),
     password varchar(100),
@@ -15,7 +15,7 @@ create table Users (
     role_id int,
     primary key(id)
 );
-create table RatingFood (
+create table rating_food (
 	id int auto_increment,
     user_id int,
     food_id int,
@@ -23,7 +23,7 @@ create table RatingFood (
     rate_point int(5),
     primary key(id)
 );
-create table Food (
+create table food (
 	id int auto_increment,
     title varchar(255),
     image text,
@@ -32,7 +32,7 @@ create table Food (
     cate_id int,
     primary key(id)
 );
-create table RatingRestaurant (
+create table rating_restaurant (
 	id int auto_increment,
 	user_id int,
     res_id int,
@@ -40,26 +40,26 @@ create table RatingRestaurant (
     rate_point int(5),
     primary key(id)
 );
-create table Category (
+create table category (
 	id int auto_increment,
     name_cate varchar(100),
     create_date timestamp,
     primary key(id)
 );
-create table Orders (
+create table orders (
 	id int auto_increment,
 	user_id int,
     res_id int,
     create_date timestamp,
     primary key(id)
 );
-create table MenuRestaurant (
+create table menu_restaurant (
 	cate_id int,
     res_id int,
     create_date timestamp,
     primary key(cate_id, res_id)
 );
-create table Restaurant (
+create table restaurant (
 	id int auto_increment,
     title varchar(255),
     subtitle varchar(255),
@@ -70,7 +70,7 @@ create table Restaurant (
     open_date timestamp,
     primary key(id)
 );
-create table Promo (
+create table promo (
 	id int auto_increment,
 	res_id int,
     percent int,
@@ -78,38 +78,46 @@ create table Promo (
     end_date timestamp,
     primary key(id)
 );
-create table OrderItem (
+create table order_item (
 	order_id int,
     food_id int,
     create_date timestamp,
     primary key(order_id, food_id)
 );
-alter table Users add constraint fk_users_role_id foreign key(role_id) references Roles(id);
-alter table RatingFood add constraint fk_ratingfood_user_id foreign key(user_id) references Users(id);
-alter table RatingFood add constraint fk_ratingfood_food_id foreign key(food_id) references Food(id);
-alter table Food add constraint fk_food_cate_id foreign key(cate_id) references Category(id);
-alter table RatingRestaurant add constraint fk_ratingrestaurant_user_id foreign key(user_id) references Users(id);
-alter table RatingRestaurant add constraint fk_ratingrestaurant_res_id foreign key(res_id) references Restaurant(id);
-alter table Orders add constraint fk_orders_user_id foreign key(user_id) references Users(id);
-alter table Orders add constraint fk_orders_res_id foreign key(res_id) references Restaurant(id);
-alter table OrderItem add constraint fk_orderitem_order_id foreign key(order_id) references Orders(id);
-alter table OrderItem add constraint fk_orderitem_food_id foreign key(food_id) references Food(id);
-alter table MenuRestaurant add constraint fk_menurestaurant_cate_id foreign key(cate_id) references Category(id);
-alter table MenuRestaurant add constraint fk_menurestaurant_res_id foreign key(res_id) references Restaurant(id);
-alter table Promo add constraint fk_promo_res_id foreign key(res_id) references Restaurant(id);
+alter table users add constraint fk_users_role_id foreign key(role_id) references roles(id);
+alter table rating_food add constraint fk_ratingfood_user_id foreign key(user_id) references users(id);
+alter table rating_food add constraint fk_ratingfood_food_id foreign key(food_id) references food(id);
+alter table food add constraint fk_food_cate_id foreign key(cate_id) references category(id);
+alter table rating_restaurant add constraint fk_ratingrestaurant_user_id foreign key(user_id) references users(id);
+alter table rating_restaurant add constraint fk_ratingrestaurant_res_id foreign key(res_id) references restaurant(id);
+alter table orders add constraint fk_orders_user_id foreign key(user_id) references users(id);
+alter table orders add constraint fk_orders_res_id foreign key(res_id) references restaurant(id);
+alter table order_item add constraint fk_orderitem_order_id foreign key(order_id) references orders(id);
+alter table order_item add constraint fk_orderitem_food_id foreign key(food_id) references food(id);
+alter table menu_restaurant add constraint fk_menurestaurant_cate_id foreign key(cate_id) references category(id);
+alter table menu_restaurant add constraint fk_menurestaurant_res_id foreign key(res_id) references restaurant(id);
+alter table promo add constraint fk_promo_res_id foreign key(res_id) references restaurant(id);
 
 
-ALTER TABLE Roles MODIFY COLUMN create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE Users MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE Category MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE OrderItem MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE MenuRestaurant MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE roles MODIFY COLUMN create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE users MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE category MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE order_item MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE menu_restaurant MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+alter table food add column is_freeship bool default false;
 
 
-insert into Roles(role_name) values("ROLE_ADMIN");
-insert into Roles(role_name) values("ROLE_USER");
+insert into roles(role_name) values("ROLE_ADMIN");
+insert into roles(role_name) values("ROLE_USER");
 
-insert into Users(user_name, password, fullname, role_id) values("abc@gmail.com","123456","abc",1);
-insert into Users(user_name, password, fullname, role_id) values("abcd@gmail.com","123","abc2",2);
+insert into users(user_name, password, fullname, role_id) values("abc@gmail.com","123456","abc",1);
+insert into users(user_name, password, fullname, role_id) values("abcd@gmail.com","123","abc2",2);
 
-select * from Users
+
+
+select * from users;
+select * from restaurant;
+select * from rating_restaurant;
+select * from category;
+select * from food;
+select lf1_0.cate_id,lf1_0.id,lf1_0.image,lf1_0.is_freeship,lf1_0.price,lf1_0.time_ship,lf1_0.title from food lf1_0 where lf1_0.cate_id=1

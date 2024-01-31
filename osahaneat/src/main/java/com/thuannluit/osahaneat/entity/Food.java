@@ -10,11 +10,16 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity(name = "food")
-public class Food extends BaseEntity{
+public class Food {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(name = "title")
     private String title;
     @Column(name = "image")
     private String image;
+    @Column(name = "is_freeship")
+    private boolean isFreeship;
     @Column(name = "time_ship")
     private String time_ship;
     @Column(name = "price")
