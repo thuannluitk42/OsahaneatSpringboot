@@ -52,4 +52,11 @@ public class RestaurantController {
         responseData.setData(restaurantServiceImp.getHomePageRestaurant());
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
+
+    @GetMapping("/detail")
+    public ResponseEntity<?> getDetailRestaurant(@RequestParam int id){
+        ResponseData responseData = new ResponseData();
+        responseData.setData(restaurantServiceImp.getDetailRestaurant(id));
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 }

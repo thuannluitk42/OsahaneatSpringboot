@@ -1,6 +1,10 @@
 package com.thuannluit.osahaneat.service;
 
+import com.thuannluit.osahaneat.dto.CategoryDTO;
+import com.thuannluit.osahaneat.dto.MenuDTO;
 import com.thuannluit.osahaneat.dto.RestaurantDTO;
+import com.thuannluit.osahaneat.entity.Food;
+import com.thuannluit.osahaneat.entity.MenuRestaurant;
 import com.thuannluit.osahaneat.entity.RatingRestaurant;
 import com.thuannluit.osahaneat.entity.Restaurant;
 import com.thuannluit.osahaneat.repository.RestaurantRepository;
@@ -13,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RestaurantService implements RestaurantServiceImp {
@@ -67,6 +68,7 @@ public class RestaurantService implements RestaurantServiceImp {
         }
         return restaurantDTOS;
     }
+
     private double caculatorRating(Set<RatingRestaurant> listRating){
         double totalPoint = 0;
         for (RatingRestaurant data: listRating) {
@@ -74,5 +76,43 @@ public class RestaurantService implements RestaurantServiceImp {
         }
         // diem trung binh = tong diem / so luot
         return totalPoint/listRating.size();
+    }
+
+    @Override
+    public RestaurantDTO getDetailRestaurant(int id) {
+        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
+        RestaurantDTO restaurantDTO = new RestaurantDTO();
+        // kiem tra null, trong, co du lieu
+        if (restaurant.isPresent()){
+            Restaurant data = restaurant.get();
+            List<CategoryDTO> listCategory = new ArrayList<>();
+
+            restaurantDTO.setTitle(data.getTitle());
+            restaurantDTO.setSubtitle(data.getSubtitle());
+            restaurantDTO.setImage(data.getImage());
+            restaurantDTO.setRating(caculatorRating(data.getListRatingRestaurant()));
+            restaurantDTO.setFreeship(data.isFreeship());
+            restaurantDTO.setOpenDate(data.getOpenDate());
+
+            //category
+            for (MenuRestaurant menuRestaurant:data.getListMenuRestaurant()) {
+                List<MenuDTO> menuDTOList = new ArrayList<>();
+                CategoryDTO categoryDTO = new CategoryDTO();
+
+                categoryDTO.setName(menuRestaurant.getCategory().getName_cate());
+                for(Food food:menuRestaurant.getCategory().getListFood()){
+                    MenuDTO menuDTO = new MenuDTO();
+                    menuDTO.setImage(food.getImage());
+                    menuDTO.setFreeship(food.isFreeship());
+                    menuDTO.setTitle(food.getTitle());
+
+                    menuDTOList.add(menuDTO);
+                }
+                categoryDTO.setMenus(menuDTOList);
+                listCategory.add(categoryDTO);
+            }
+            restaurantDTO.setListCategory(listCategory);
+        }
+        return restaurantDTO;
     }
 }
