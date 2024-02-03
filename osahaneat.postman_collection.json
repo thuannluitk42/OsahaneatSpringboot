@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "d0bc3c53-f8f1-49f7-ac74-06863d04a99c",
+		"name": "osahaneat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19914412"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIn0.uU56cJr-Xbqigb32Q0XbuOqJA0byDQnthTZCpCz54vI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/login/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRestaurant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIn0.uU56cJr-Xbqigb32Q0XbuOqJA0byDQnthTZCpCz54vI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Backgrounds/japanese-castle-fantasy-art-26-4k.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Burger King",
+							"type": "text"
+						},
+						{
+							"key": "subtitle",
+							"value": "American, Fastfood",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Delicious, very veyry cheap",
+							"type": "text"
+						},
+						{
+							"key": "isFreeship",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "San Francisco, Califonia",
+							"type": "text"
+						},
+						{
+							"key": "open_date",
+							"value": "2024-01-30 08:30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/restaurant",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download File",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/restaurant/files/1920x1080.jpg",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"files",
+						"1920x1080.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetListRestaurant",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIn0.uU56cJr-Xbqigb32Q0XbuOqJA0byDQnthTZCpCz54vI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/restaurant/getHomeRestaurant",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"restaurant",
+						"getHomeRestaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMenu",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIn0.uU56cJr-Xbqigb32Q0XbuOqJA0byDQnthTZCpCz54vI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Backgrounds/Zephyrus G14_1920x1080.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Lokiata",
+							"type": "text"
+						},
+						{
+							"key": "is_freeship",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "time_ship",
+							"value": "7 minutes",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "50000",
+							"type": "text"
+						},
+						{
+							"key": "cate_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/menu/createMenu",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"menu",
+						"createMenu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetListCategory",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmNAZ21haWwuY29tIn0.uU56cJr-Xbqigb32Q0XbuOqJA0byDQnthTZCpCz54vI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/category/getHomeCategory",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"category",
+						"getHomeCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DetailRestaurant",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"restId\": 1,\r\n    \"foodIds\": [\r\n        1,\r\n        2\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
