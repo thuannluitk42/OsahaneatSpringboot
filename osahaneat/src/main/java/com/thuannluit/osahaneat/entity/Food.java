@@ -24,6 +24,8 @@ public class Food {
     private String time_ship;
     @Column(name = "price")
     private double price;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "cate_id")

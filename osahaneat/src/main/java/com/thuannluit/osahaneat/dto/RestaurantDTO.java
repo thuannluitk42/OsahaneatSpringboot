@@ -16,5 +16,7 @@ public class RestaurantDTO {
     private boolean isFreeship;
     private double rating;
     private Date openDate;
+    private int Id;
+    private String desc;
     List<CategoryDTO> listCategory;
 }

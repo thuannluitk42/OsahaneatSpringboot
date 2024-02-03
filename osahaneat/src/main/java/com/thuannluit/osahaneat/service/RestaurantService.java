@@ -59,11 +59,14 @@ public class RestaurantService implements RestaurantServiceImp {
         RestaurantDTO restaurantDTO;
         for (Restaurant data:listData) {
             restaurantDTO = new RestaurantDTO();
+
+            restaurantDTO.setId(data.getId());
             restaurantDTO.setImage(data.getImage());
             restaurantDTO.setTitle(data.getTitle());
             restaurantDTO.setFreeship(data.isFreeship());
             restaurantDTO.setSubtitle(data.getSubtitle());
             restaurantDTO.setRating(caculatorRating(data.getListRatingRestaurant()));
+
             restaurantDTOS.add(restaurantDTO);
         }
         return restaurantDTOS;
@@ -92,27 +95,35 @@ public class RestaurantService implements RestaurantServiceImp {
             restaurantDTO.setImage(data.getImage());
             restaurantDTO.setRating(caculatorRating(data.getListRatingRestaurant()));
             restaurantDTO.setFreeship(data.isFreeship());
+            restaurantDTO.setDesc(data.getDescription());
             restaurantDTO.setOpenDate(data.getOpenDate());
 
             //category
             for (MenuRestaurant menuRestaurant:data.getListMenuRestaurant()) {
-                List<MenuDTO> menuDTOList = new ArrayList<>();
-                CategoryDTO categoryDTO = new CategoryDTO();
-
-                categoryDTO.setName(menuRestaurant.getCategory().getName_cate());
-                for(Food food:menuRestaurant.getCategory().getListFood()){
-                    MenuDTO menuDTO = new MenuDTO();
-                    menuDTO.setImage(food.getImage());
-                    menuDTO.setFreeship(food.isFreeship());
-                    menuDTO.setTitle(food.getTitle());
-
-                    menuDTOList.add(menuDTO);
-                }
-                categoryDTO.setMenus(menuDTOList);
+                CategoryDTO categoryDTO = getCategoryDTO(menuRestaurant);
                 listCategory.add(categoryDTO);
             }
             restaurantDTO.setListCategory(listCategory);
         }
         return restaurantDTO;
+    }
+
+    private static CategoryDTO getCategoryDTO(MenuRestaurant menuRestaurant) {
+        List<MenuDTO> menuDTOList = new ArrayList<>();
+        CategoryDTO categoryDTO = new CategoryDTO();
+
+        categoryDTO.setName(menuRestaurant.getCategory().getName_cate());
+        for(Food food: menuRestaurant.getCategory().getListFood()){
+            MenuDTO menuDTO = new MenuDTO();
+            menuDTO.setTitle(food.getTitle());
+            menuDTO.setImage(food.getImage());
+            menuDTO.setFreeship(food.isFreeship());
+            menuDTO.setDescription(food.getDescription());
+            menuDTO.setPrice(food.getPrice());
+
+            menuDTOList.add(menuDTO);
+        }
+        categoryDTO.setMenus(menuDTOList);
+        return categoryDTO;
     }
 }

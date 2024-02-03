@@ -23,8 +23,6 @@ public class OrderItem {
     @JoinColumn(name = "food_id", insertable = false, updatable = false)
     private Food food;
 
-    @Column(name = "created_date")
+    @Column(name = "create_date")
     private Date createdDate;
-    @Column(name = "price")
-    private double price;
 }

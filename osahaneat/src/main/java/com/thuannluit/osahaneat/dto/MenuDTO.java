@@ -9,4 +9,6 @@ public class MenuDTO {
     private String title;
     private String image;
     private boolean isFreeship;
+    private String description;
+    private double price;
 }

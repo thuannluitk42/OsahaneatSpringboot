@@ -102,9 +102,11 @@ alter table promo add constraint fk_promo_res_id foreign key(res_id) references 
 ALTER TABLE roles MODIFY COLUMN create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE users MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE category MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE orders MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE order_item MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE menu_restaurant MODIFY COLUMN create_date TIMESTAMP  DEFAULT CURRENT_TIMESTAMP;
 alter table food add column is_freeship bool default false;
+alter table food add column description text;
 
 
 insert into roles(role_name) values("ROLE_ADMIN");
@@ -120,4 +122,6 @@ select * from restaurant;
 select * from rating_restaurant;
 select * from category;
 select * from food;
-select lf1_0.cate_id,lf1_0.id,lf1_0.image,lf1_0.is_freeship,lf1_0.price,lf1_0.time_ship,lf1_0.title from food lf1_0 where lf1_0.cate_id=1
+select * from menu_restaurant;
+select * from orders;
+select * from order_item;
